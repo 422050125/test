@@ -1,0 +1,58 @@
+<{include "../common/header.html"}>
+
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+	<span class="c-gray en">&gt;</span>系统管理<span class="c-gray en">&gt;</span>日志查询
+	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+</nav>
+<div class="page-container">
+	<div class="text-c">
+		<form class="Huiform" method="post" action="">
+            <span class="select-box" style="width:140px;">
+                <select name="uid" class="select" id="search_brand">
+					<option value="0" class="select option" name="uid">请选择用户</option>
+					<{foreach $users as $val}>
+					<option value="<{$val.id}> <{if $val.id==$whereData['uid']}>selected<{/if}>" class="select option" <{if $whereData.uid==$val.id}>selected<{/if}>><{$val.uname}></option>
+					<{/foreach}>
+				</select>
+            </span>
+			<input name="sdate" type="text" value="<{$whereData.sdate}>" placeholder="开始日期" class="input-text" style="width:150px" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+			<input name="edate" type="text" value="<{$whereData.edate}>" placeholder="结束日期" class="input-text" style="width:150px" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+			<input name="module" type="text" placeholder="module" value="<{$whereData.module}>" class="input-text" style="width:120px">
+			<input name="controller" type="text" placeholder="controller" value="<{$whereData.controller}>" class="input-text" style="width:120px">
+			<input name="action" type="text" placeholder="action" value="<{$whereData.action}>" class="input-text" style="width:120px">
+			<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont"></i> 搜索</button>
+		</form>
+	</div>
+
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-hover table-bg table-sort">
+			<thead>
+				<tr class="text-c">
+					<th width="25">ID</th>
+					<th width="">用户名</th>
+					<th width="">module</th>
+					<th width="">controller</th>
+					<th width="">action</th>
+					<th width="">时间</th>
+					<th width="">IP</th>
+				</tr>
+			</thead>
+			<tbody>
+				<{foreach $logs as $val}>
+				<tr class="text-c" id="this_tr">
+					<td><{$val.id}></td>
+					<td><{$val.uname}></td>
+					<td><{$val.module}></td>
+					<td><{$val.controller}></td>
+					<td><{$val.action}></td>
+					<td><{date('Y-m-d H:i:s',$val.addtime)}></td>
+					<td><{$val.ip}></td>
+				</tr>
+				<{/foreach}>
+			</tbody>
+		</table>
+		<{$page_html}>
+	</div>
+</div>
+
+<{include "../common/footer.html"}>

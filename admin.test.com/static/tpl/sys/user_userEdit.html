@@ -1,0 +1,56 @@
+<{include "../common/header.html"}>
+
+<article class="page-container">
+	<form action="" method="post" class="form form-horizontal" id="ajaxForm">
+		<input type="hidden" value="<{$user.id}>" name="id" />
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="<{$user.uname}>" placeholder="" id="uname" name="uname">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>密码：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="password" class="input-text" value="" placeholder="" id="password" name="password">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>确认密码：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="password" class="input-text" value="" placeholder="" id="repassword" name="repassword">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">所属用户组：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<span class="select-box">
+				<select class="select" size="1" name="groupid">
+					<{foreach $groups as $val}>
+					<option value="<{$val.id}>" <{if $val.id==$user.groupid}>selected<{/if}> ><{$val.gname}></option>
+					<{/foreach}>
+				</select>
+				</span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">状态：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<span class="select-box">
+				<select class="select" size="1" name="status">
+					<option value="1" <{if 1==$user.status}>selected<{/if}> >启用</option>
+					<option value="0" <{if 0==$user.status}>selected<{/if}> >停用</option>
+				</select>
+				</span>
+			</div>
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<button class="btn btn-primary radius" type="submit">提交</button>
+				<button class="btn btn-primary radius" type="button" id="cancel_open">取消</button>
+			</div>
+		</div>
+	</form>
+</article>
+
+<{include "../common/footer.html"}>
